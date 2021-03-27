@@ -1,0 +1,150 @@
+import { BuildContext } from "@hydro-sdk/hydro-sdk/runtime/flutter/buildContext";
+import { Key } from "@hydro-sdk/hydro-sdk/runtime/flutter/foundation/key";
+import {
+    AppBar,
+    Card,
+    Colors,
+    IconButton,
+    Icons,
+    MaterialApp,
+    PopupMenuButton,
+    PopupMenuItem,
+    Scaffold,
+    Theme,
+} from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
+import { EdgeInsets } from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
+import { CrossAxisAlignment, MainAxisSize } from "@hydro-sdk/hydro-sdk/runtime/flutter/rendering/index";
+import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
+import {
+    Center,
+    Column,
+    Icon,
+    IconData,
+    Padding,
+    SizedBox,
+    State,
+    StatefulWidget,
+    StatelessWidget,
+    Text,
+} from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
+
+export class BasicAppBar extends StatefulWidget {
+    public constructor() {
+        super();
+    }
+
+    public createState(): _BasicAppBarState {
+        return new _BasicAppBarState();
+    }
+}
+
+class _BasicAppBarState extends State<BasicAppBar> {
+    public selectedChoice = choices[0];
+    public constructor() {
+        super();
+    }
+
+    public select = (choice: Choice) => {
+        this.setState(() => {
+            this.selectedChoice = choice;
+        });
+    };
+
+    public dispose() { }
+
+    public initState() { }
+
+    public build(): Widget {
+        return new MaterialApp({
+            home: new Scaffold({
+                appBar: new AppBar({
+                    title: new Text("Basic Appbar"),
+                    actions: [
+                        new IconButton({
+                            key: new Key(choices[0].icon.toString() + "button"),
+                            icon: new Icon(choices[0].icon),
+                            onPressed: () => {
+                                this.select(choices[0]);
+                            },
+                        }),
+                        new IconButton({
+                            key: new Key(choices[1].icon.toString() + "button"),
+                            icon: new Icon(choices[1].icon),
+                            onPressed: () => {
+                                this.select(choices[1]);
+                            },
+                        }),
+                        new PopupMenuButton<Choice>({
+                            onSelected: (choice: Choice) => {
+                                this.select(choice);
+                            },
+                            itemBuilder: (): PopupMenuItem<Choice>[] => {
+                                return choices.map((choice) => {
+                                    return new PopupMenuItem<Choice>({
+                                        value: choice,
+                                        child: new Text(choice.title),
+                                    });
+                                });
+                            },
+                        }),
+                    ],
+                }),
+                body: new Padding({
+                    padding: EdgeInsets.all(16.0),
+                    child: new ChoiceCard({ choice: this.selectedChoice }),
+                }),
+            }),
+            initialRoute: "/",
+        });
+    }
+}
+
+class Choice {
+    public title: string;
+    public icon: IconData;
+
+    public constructor(props: { title: string; icon: IconData }) {
+        this.title = props.title;
+        this.icon = props.icon;
+    }
+}
+
+const choices = [
+    new Choice({ title: "Car", icon: Icons.directions_car }),
+    new Choice({ title: "Bicycle", icon: Icons.directions_bike }),
+    new Choice({ title: "Boat", icon: Icons.directions_boat }),
+    new Choice({ title: "Bus", icon: Icons.directions_bus }),
+    new Choice({ title: "Train", icon: Icons.directions_railway }),
+    new Choice({ title: "Walk", icon: Icons.directions_walk }),
+];
+
+class ChoiceCard extends StatelessWidget {
+    public readonly choice: Choice;
+    public constructor(props: { choice: Choice }) {
+        super();
+        this.choice = props.choice;
+    }
+
+    public build(context: BuildContext): Widget {
+        const textStyle = Theme.of(context).textTheme.display1;
+        return new Card({
+            color: Colors.white,
+            child: new Center({
+                child: new Column({
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                        new SizedBox({
+                            key: new Key(this.choice.icon.toString()),
+                        }),
+                        new Icon(this.choice.icon, {
+                            size: 128.0,
+                            color: textStyle.color,
+                        }),
+                        new Text(this.choice.title, { style: textStyle }),
+                    ],
+                }),
+            }),
+        });
+    }
+}
