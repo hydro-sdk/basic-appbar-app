@@ -1,33 +1,24 @@
-import { BuildContext } from "@hydro-sdk/hydro-sdk/runtime/flutter/buildContext";
 import { Key } from "@hydro-sdk/hydro-sdk/runtime/flutter/foundation/key";
 import {
     AppBar,
-    Card,
-    Colors,
     IconButton,
-    Icons,
     MaterialApp,
     PopupMenuButton,
     PopupMenuItem,
     Scaffold,
-    Theme,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
 import { EdgeInsets } from "@hydro-sdk/hydro-sdk/runtime/flutter/painting/index";
-import { CrossAxisAlignment, MainAxisSize } from "@hydro-sdk/hydro-sdk/runtime/flutter/rendering/index";
 import { Widget } from "@hydro-sdk/hydro-sdk/runtime/flutter/widget";
 import {
-    Center,
-    Column,
     Icon,
-    IconData,
     Padding,
-    SizedBox,
     State,
     StatefulWidget,
-    StatelessWidget,
     Text,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
-
+import { Choice } from "./choice";
+import {choices} from "./choices";
+import {ChoiceCard} from "./choiceCard";
 export class BasicAppBar extends StatefulWidget {
     public constructor() {
         super();
@@ -95,56 +86,6 @@ class _BasicAppBarState extends State<BasicAppBar> {
                 }),
             }),
             initialRoute: "/",
-        });
-    }
-}
-
-class Choice {
-    public title: string;
-    public icon: IconData;
-
-    public constructor(props: { title: string; icon: IconData }) {
-        this.title = props.title;
-        this.icon = props.icon;
-    }
-}
-
-const choices = [
-    new Choice({ title: "Car", icon: Icons.directions_car }),
-    new Choice({ title: "Bicycle", icon: Icons.directions_bike }),
-    new Choice({ title: "Boat", icon: Icons.directions_boat }),
-    new Choice({ title: "Bus", icon: Icons.directions_bus }),
-    new Choice({ title: "Train", icon: Icons.directions_railway }),
-    new Choice({ title: "Walk", icon: Icons.directions_walk }),
-];
-
-class ChoiceCard extends StatelessWidget {
-    public readonly choice: Choice;
-    public constructor(props: { choice: Choice }) {
-        super();
-        this.choice = props.choice;
-    }
-
-    public build(context: BuildContext): Widget {
-        const textStyle = Theme.of(context).textTheme.display1;
-        return new Card({
-            color: Colors.white,
-            child: new Center({
-                child: new Column({
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                        new SizedBox({
-                            key: new Key(this.choice.icon.toString()),
-                        }),
-                        new Icon(this.choice.icon, {
-                            size: 128.0,
-                            color: textStyle.color,
-                        }),
-                        new Text(this.choice.title, { style: textStyle }),
-                    ],
-                }),
-            }),
         });
     }
 }
