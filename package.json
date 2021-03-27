@@ -1,0 +1,40 @@
+{
+  "name": "basic-appbar-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "flutter test",
+    "format": "flutter format lib test && npx prettier --write ota"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydro-sdk/basic-appbar-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hydro-sdk/basic-appbar-app/issues"
+  },
+  "homepage": "https://github.com/hydro-sdk/basic-appbar-app#readme",
+  "dependencies": {
+    "@hydro-sdk/waveform": "0.0.1-nightly.33",
+    "@hydro-sdk/hydro-sdk": "0.0.1-nightly.182",
+    "prettier": "^2.2.0",
+    "prettier-plugin-import-sort": "0.0.6",
+    "import-sort-style-module": "^6.0.0"
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  },
+  "prettier": {
+    "tabWidth": 4
+  }
+}
