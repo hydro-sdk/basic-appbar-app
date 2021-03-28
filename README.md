@@ -1,5 +1,4 @@
 # basic-appbar-app
-# animated-list-app
 ![Action Gif](https://github.com/hydro-sdk/basic-appbar-app/blob/main/media/action-gif.gif)  
 
 This repository is a demonstration of a Flutter appbar and material design icons with Hydro-SDK.
