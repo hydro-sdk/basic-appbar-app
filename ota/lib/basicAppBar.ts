@@ -16,9 +16,10 @@ import {
     StatefulWidget,
     Text,
 } from "@hydro-sdk/hydro-sdk/runtime/flutter/widgets/index";
+
 import { Choice } from "./choice";
-import {choices} from "./choices";
-import {ChoiceCard} from "./choiceCard";
+import { ChoiceCard } from "./choiceCard";
+import { choices } from "./choices";
 export class BasicAppBar extends StatefulWidget {
     public constructor() {
         super();
@@ -41,9 +42,9 @@ class _BasicAppBarState extends State<BasicAppBar> {
         });
     };
 
-    public dispose() { }
+    public dispose() {}
 
-    public initState() { }
+    public initState() {}
 
     public build(): Widget {
         return new MaterialApp({

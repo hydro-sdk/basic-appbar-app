@@ -1,5 +1,6 @@
-import { Icons } from '@hydro-sdk/hydro-sdk/runtime/flutter/material/index';
-import {Choice} from './choice';
+import { Icons } from "@hydro-sdk/hydro-sdk/runtime/flutter/material/index";
+
+import { Choice } from "./choice";
 
 export const choices = [
     new Choice({ title: "Car", icon: Icons.directions_car }),
