@@ -32,7 +32,7 @@ void main() {
   testWidgets('basic app bar smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(const RunComponentFromFile(
       component: "basic-appbar",
-      path: "../assets/ota/basic-appbar.ota",
+      path: "assets/ota/basic-appbar.ota",
     ));
     await tester.pumpAndSettle();
 
